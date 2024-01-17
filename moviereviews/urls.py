@@ -10,7 +10,8 @@ urlpatterns = [
     path('', movieViews.home, name='home'),
     path('about/', movieViews.about, name='about'),
     path('signup/', movieViews.signup, name='signup'),
-    path('movie/', include('movie.urls'))
+    path('movie/', include('movie.urls')),
+    path('accounts/', include('accounts.urls')),
     
 ]
 
