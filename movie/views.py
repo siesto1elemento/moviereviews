@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Movie
 from django.shortcuts import get_object_or_404
+from .forms import MovieForm
 
 
 def home(request):
@@ -23,3 +24,16 @@ def signup(request):
 def detail(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)
     return render(request, 'detail.html',{'movie':movie})
+
+def ModelFormView(request):
+    if request.method == 'POST':
+        form = MovieForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  
+    else:
+        form = MovieForm()
+        
+    return render(request, 'FormView.html', {'form': form})
+            
+        
