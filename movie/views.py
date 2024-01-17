@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Movie
 from django.shortcuts import get_object_or_404
 from .forms import MovieForm
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -25,6 +26,7 @@ def detail(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)
     return render(request, 'detail.html',{'movie':movie})
 
+@login_required
 def ModelFormView(request):
     if request.method == 'POST':
         form = MovieForm(request.POST, request.FILES)
