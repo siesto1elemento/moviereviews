@@ -26,7 +26,7 @@ def detail(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)
     return render(request, 'detail.html',{'movie':movie})
 
-@login_required
+@login_required 
 def ModelFormView(request):
     if request.method == 'POST':
         form = MovieForm(request.POST, request.FILES)
